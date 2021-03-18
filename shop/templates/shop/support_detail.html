@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Support Detail{% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col">
+        <div class="alert alert-info" role="alert">Support Detail</div>
+    </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{support.product}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Written By {{support.author}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{support.created}}</h6>
+    <p class="card-text">{{support.query}}</p>
+  </div>
+</div>
+{% endblock%} 

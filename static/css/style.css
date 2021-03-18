@@ -1,0 +1,13 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+div.navbar-expand-lg navbar-light bg-light{
+    position: sticky;
+    color: black
+}
+
+@media screen and (max-width: 768px) {
+    /* For mobile phones: */
+ 
+    
+}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Support List
+{% endblock %}
+{% block content %}
+<div class = "row">
+<div class = "col">
+        <div class = "alert alert-info">
+            {% if current_category %}
+            {{current_category.name}}
+            {% else %}Your support list
+            {% endif %}
+        </div>
+        <div class = "row">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Submitted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for support in supportlist %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td><a href = "{% url 'shop:support_detail' support.id %}">{{support.product}}</td>
+                        <td>{{support.query}}</td>
+                        <td>{{support.created}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

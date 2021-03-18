@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+My Orders
+{% endblock %}
+{% block content %}
+    <div class = "row">
+<div class = "col">
+        <div class = "alert alert-info">
+        My Orders
+        </div>
+            {% for order in orders %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Number {{forloop.counter}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Created : {{order.created}}</h6>
+                    {% for item in order.items.all %}
+                    <h6 class="card-title">{{item.product.name}}</h6>
+                    <img src = "{{item.product.image.url}}" style="width: 50%"></br>
+                    <h6 class="card-subtitle mb-2 text-muted">Price: ${{item.price}}</h6></>
+                    <h6 class="card-subtitle mb-2 text-muted">Quantity: {{item.quantity}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Product Total: ${{item.get_item_price}}</h6>
+                    {% endfor %}
+                    <h5 class="card-title">Total</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Total Price: ${{order.get_total_product}}</h6>
+                    {% if order.coupon %}
+                    <h6 class="card-subtitle mb-2 text-muted">Code: ${{order.coupon.code}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Amount: ${{order.coupon.amount}}</h6>
+                    {% endif %}
+                    <h6 class="card-subtitle mb-2 text-muted">Discount: ${{order.discount}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Final Price: ${{order.get_total_price}}</h6>
+                    <h5 class="card-title">Address</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">{{order.address}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{order.city}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{order.postal_code}}</h6>
+                </div>
+            </div>
+            </br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+Wish List
+{% endblock %}
+{% block content %}
+<div class = "row">
+<div class = "col">
+        <div class = "alert alert-info">
+            {% if current_category %}
+            {{current_category.name}}
+            {% else %}Your own wish list
+            {% endif %}
+        </div>
+        <div class = "row">
+            {% for product in wishlist %}
+            <div class = "col-4">
+                <div class = "card"> 
+                    <img class = "cart-img-top" src = "{{product.image.url}}" alt = "Product Image" style="width: 100%">
+                    <div class = "card-body">
+                        <h5 class = "card-title">{{product.name}}</h5>
+                        <h5 class = "card-brand">{{product.brand}}</h5>
+                        <p class = "card-text">{{product.description}}</p>
+                        <div class = "badge badge-secondary">Price</div> ${{product.price}}</p>
+                        <div class = "badge badge-secondary">Size</div> {{product.size}}</p>
+                        <a href = "{{product.remove_from_wishlist}}" class="btn btn-outline-danger my-2 my-sm-0">Unlike</a>
+                        <a href = "{{product.get_absolute_url}}" class = "btn btn-outline-primary my-2 my-sm-0">View Detail</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

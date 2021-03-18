@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} {{product.name}} {% endblock%}
+{% block content%}
+    <div class = "row">
+        <div class = "col-4">
+            <img src = "{{product.image.url}}" width = "100%">
+        </div>
+        <div class = "col">
+            <h1 class = "display-6">{{product.name}}</h1>
+            <h5><span class = 'badge badge-secondary'>Brand</span>
+            {{product.brand}}</h5>
+            <h5><span class = 'badge badge-secondary'>Price</span>
+            ${{product.price}}</h5>
+            <h5><span class = 'badge badge-secondary'>Size</span>
+            {{product.size}}</h5>
+            <h5><span class = 'badge badge-secondary'>Description</span>{{product.description|linebreaks}}</h5>
+            <h5><span class = 'badge badge-secondary'>Details</span>{{product.details|linebreaks}}</h5>
+            <h5><span class = 'badge badge-secondary'>Size and Fits</span>{{product.size_and_fits|linebreaks}}</h5>
+            <h5><span class = 'badge badge-secondary'>Reviews</span></h5>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Stars</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td><a href = "{% url 'shop:review_detail' review.id %}">{{review.title}}</td>
+                        <td>{{review.author}}</td>
+                        <td>{{review.stars}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href = "{{product.put_into_wishlist}}" class="btn btn-outline-danger my-2 my-sm-0">Like</a>
+            <button type = "submit" onclick = "location.href='{% url 'shop:review_write' product.id %}'" class = "btn btn-outline-primary my-2 my-sm-0"  style="float: right;">Write a Review</button>
+            </br>
+            </br>
+            <form action ="{% url 'cart:product_add' product.id %}" method = "post">
+                {{add_to_cart}}
+                {% csrf_token %}
+                <input type = "submit" class = "btn btn-outline-primary my-2 my-sm-0" value = "Add to Cart">
+            </form>
+        </div>
+    </div>
+{% endblock %}

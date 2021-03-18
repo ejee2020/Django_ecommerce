@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Review Detail{% endblock%}
+
+{% block content%}
+<div class="row">
+    <div class="col">
+        <div class="alert alert-info" role="alert">Review Detail</div>
+    </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{review.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Written By {{review.author}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{review.created}}</h6>
+    <p class="card-text">{{review.description}}</p>
+  </div>
+</div>
+{% endblock%} 
