@@ -1,2 +1,3 @@
-# Django_ecommerce
-# Django_ecommerce
+Ecommerce website made with Django 
+
+
